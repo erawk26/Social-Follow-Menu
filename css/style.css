@@ -1,9 +1,11 @@
 /*----------- Page layout Nonsense ----------*/
+/* line 14, ../scss/style.scss */
 body {
   height: 100vh;
   background: url("//dl.dropboxusercontent.com/u/636807/vt-colors.jpg");
 }
 
+/* line 20, ../scss/style.scss */
 h1,
 h2,
 h3,
@@ -12,57 +14,126 @@ h4 {
   color: #333;
 }
 
+/* line 28, ../scss/style.scss */
 .container {
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
   border-style: double;
-  justify-content: flex-start;
-  flex-direction: column;
-  padding: 3% 3% 5% 3%;
-  min-width: 275px;
-  min-height: 180px;
-  width: 40%;
+  width: auto;
   background: rgba(200, 200, 200, 0.5);
   border-color: #777;
 }
+/* line 35, ../scss/style.scss */
 .container h3 {
   text-align: center;
   margin-bottom: 20px;
 }
 
 /*---------------- Menu Layout ------------------*/
-.social {
-  padding: 20px 12px 20px 30px;
-  margin: 0;
-  float: right;
-  overflow: visible;
-  display: inline-block;
+/* line 42, ../scss/style.scss */
+.menu-wrapper {
+  overflow: hidden;
+  padding: 15px;
 }
+
+/* line 46, ../scss/style.scss */
+.center, body {
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* line 47, ../scss/style.scss */
+.social {
+  margin: 0;
+  padding: 0;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 206.25px;
+  list-style: none;
+}
+/* line 53, ../scss/style.scss */
 .social li {
   background: #333;
   background: rgba(20, 20, 20, 0.3);
-  display: inline-block;
-  height: 25px;
-  width: 25px;
-  line-height: 25px;
-  margin: -1px 7px;
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
+  width: 30px;
+  line-height: 30px;
   text-align: center;
 }
+/* line 60, ../scss/style.scss */
 .social li a {
-  font-size: 15px;
+  font-size: 16.5px;
   color: #fff;
   display: block;
   text-align: center;
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
 }
+
+/* line 72, ../scss/style.scss */
+.social li {
+  -moz-transition: all, 0.7s;
+  -o-transition: all, 0.7s;
+  -webkit-transition: all, 0.7s;
+  transition: all, 0.7s;
+  -moz-transform: rotate(45deg) scale(1);
+  -ms-transform: rotate(45deg) scale(1);
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+}
+/* line 74, ../scss/style.scss */
+.social li * {
+  -moz-transition: all, 0.7s;
+  -o-transition: all, 0.7s;
+  -webkit-transition: all, 0.7s;
+  transition: all, 0.7s;
+}
+/* line 78, ../scss/style.scss */
+.social li > * {
+  -moz-transform: rotate(-45deg) scale(1);
+  -ms-transform: rotate(-45deg) scale(1);
+  -webkit-transform: rotate(-45deg) scale(1);
+  transform: rotate(-45deg) scale(1);
+}
+/* line 81, ../scss/style.scss */
 .social li:hover {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -72,30 +143,35 @@ h4 {
   -webkit-transform: rotate(-45deg) scale(1.25, 1.25);
   transform: rotate(-45deg) scale(1.25, 1.25);
 }
-.social li:hover .fa {
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
+/* line 84, ../scss/style.scss */
+.social li:hover > * {
+  -moz-transform: rotate(45deg) scale(1.25, 1.25);
+  -ms-transform: rotate(45deg) scale(1.25, 1.25);
+  -webkit-transform: rotate(45deg) scale(1.25, 1.25);
+  transform: rotate(45deg) scale(1.25, 1.25);
 }
-.social .phone {
-  margin-left: -15px;
-}
+
+/* line 92, ../scss/style.scss */
 .social .facebook:hover {
   background: #3b5998;
 }
+/* line 95, ../scss/style.scss */
 .social .twitter:hover {
   background: #55acee;
 }
+/* line 98, ../scss/style.scss */
 .social .google-plus:hover {
   background: #dd4b39;
 }
+/* line 101, ../scss/style.scss */
 .social .linkedin:hover {
   background: #007bb5;
 }
+/* line 104, ../scss/style.scss */
 .social .phone:hover {
   background: green;
 }
+/* line 107, ../scss/style.scss */
 .social .instagram:hover {
   background: -webkit-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -webkit-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
   background: -moz-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -moz-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
@@ -104,16 +180,31 @@ h4 {
   background: radial-gradient(circle farthest-corner at 32% 106%, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, rgba(0, 0, 0, 0) 82%), linear-gradient(135deg, #234bd7 12%, #c33cbe 58%);
 }
 
-.fa,
-.social li {
-  -moz-transition: all, 0.7s;
-  -o-transition: all, 0.7s;
-  -webkit-transition: all, 0.7s;
-  transition: all, 0.7s;
+/* line 128, ../scss/style.scss */
+.social {
+  margin: 0;
+  padding: 0;
+  margin-top: 3.75px;
+  margin-left: -22.5px;
+  margin-right: -22.5px;
 }
-
-.center, body, .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* line 133, ../scss/style.scss */
+.social li {
+  margin: 0;
+  padding: 0;
+}
+/* line 135, ../scss/style.scss */
+.social li:not(.break) {
+  margin-top: -3.75px;
+  margin-left: 22.5px;
+}
+/* line 139, ../scss/style.scss */
+.social li:first-child {
+  margin-left: 48.75px;
+}
+/* line 144, ../scss/style.scss */
+.social .break {
+  transform: unset;
+  height: 0;
+  width: 100%;
 }

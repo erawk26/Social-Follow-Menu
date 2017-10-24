@@ -1,0 +1,197 @@
+@mixin flex($justify: center, $align: center, $direction: false, $wrap: false, $display: flex, $aligncontent: false) {
+  @if $display == flex {
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+  }
+  @else {
+    display: -ms-inline-flexbox;
+    display: -moz-inline-flex;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+  }
+  @if $direction { @include flexprop(flex-direction, $direction); }
+  @if $wrap { @include flexprop(flex-wrap, $wrap); }
+  @if $justify { @include flexprop(justify-content, $justify); }
+  @if $align { @include flexprop(align-items, $align); }
+  @if $aligncontent { @include flexprop(align-content, $aligncontent); }
+}
+@mixin flexchild($flexgrow: 1, $flexshrink: 0, $flexbasis: auto, $alignself: false, $order: false) {
+  @if $order { @include flexprop(order, $order); }
+  @include flexprop(flex, ($flexgrow $flexshrink $flexbasis));
+  @if $alignself { @include flexprop(align-self, $alignself); }
+}
+@function ieflexvalue($value) {
+  @if $value == flex-start { @return start; }
+  @if $value == flex-end { @return end; }
+  @if $value == space-between { @return justify; }
+  @if $value == space-around { @return distribute; }
+  @if $value == justify-content { @return flex-pack; }
+  @if $value == align-items { @return flex-align; }
+  @if $value == align-content { @return flex-line-pack; }
+  @if $value == align-self { @return flex-item-align; }
+  @if $value == order { @return flex-order; }
+  @return $value;
+}
+@mixin flexprop($prop, $value) {
+  -webkit-#{$prop}: $value;
+  -moz-#{$prop}: $value;
+  -ms-#{ieflexvalue($prop)}: ieflexvalue($value);
+  #{$prop}: $value;
+}
+@mixin flex-grid($num:3,$x: 4%,$y:$x) {
+  margin-top: -$y;
+  margin-left: -$x;
+  width:auto;
+  & > * {
+    margin-top: $y;
+    margin-left: $x;
+    box-sizing: border-box;
+    @include flexchild(1, 0, 0);
+    min-width:calc((99.5% / #{$num}) - #{$x});
+    max-width:calc((100.5% / #{$num}) - #{$x});
+  }
+}
+@mixin mobile {
+  @media (max-width: #{$mobile-breakpoint - 1}) {
+    @content;
+  }
+}
+@mixin not-mobile {
+  @media (min-width: #{$mobile-breakpoint}){
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: #{$mobile-breakpoint}) and (max-width: #{$tablet-breakpoint - 1}) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: #{$tablet-breakpoint}) {
+    @content;
+  }
+}
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+@mixin maxw($maxw:$bp-mw){
+  //max-width centered block
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $maxw;
+  width: 100%;
+}
+@mixin marding($mg:0, $pd:0) {
+  //margin & padding combo
+  margin: $mg;
+  padding: $pd;
+}
+@mixin hardware($backface: true, $perspective: 1000) {
+  @if $backface {
+    backface-visibility: hidden;
+  }
+  perspective: $perspective;
+}
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+  $padding: unquote( ( $y / $x ) * 100 + '%' );
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@mixin hidden($opacity:0,$state:block) {
+  @if $opacity == 1 {
+    display: $state;
+    visibility: visible;
+  }
+  @if $opacity == 0 {
+    display: none;
+    visibility: hidden;
+  }
+  opacity:$opacity;
+}
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+
+    color: $color;
+  }
+}
+@mixin underline($color, $size:2px, $distance:3px) {
+  &:after {
+    opacity: 0;
+    transition: all .5s ease-out;
+    content: '';
+    display: block;
+    position: relative;
+    top: auto;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: $size;
+    background: $color;
+  }
+  &:hover,&:focus {
+    &:after {
+      opacity: 1;
+      bottom: $distance;
+    }
+  }
+}
+@mixin btn-clr($c1,$c2,$border:0,$transition:color .5s ease-out) {
+  color: $c2;
+  background: $c1;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+  &:hover, &:active, &:focus {
+    color: $c1;
+    background: $c2;
+    border: $border solid $c1;
+  }
+  &:visited {
+    color: $c2;
+    background-color: $c1;
+  }
+}
+@mixin grey-gradient($src,$size:cover,$position:center){
+  @include background-image(linear-gradient(left top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.05) 23%,rgba(0,0,0,0) 100%),url($src));
+  background-position: $position;
+  background-size: $size;
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+}
+@mixin stripes($color:#333, $size:3px, $angle:-45deg) {
+  $colorAlt: lighten($color, 15);
+  background: repeating-linear-gradient( $angle, $color, $color $size, $colorAlt $size, $colorAlt ($size * 2));
+}
